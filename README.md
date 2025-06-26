@@ -24,27 +24,27 @@ This plot shows feature importance using SHAP values:
 
 ## 📁 Folder Structure
 
-livelihood-risk/
-│
-├── api/
-│ └── main.py # FastAPI server with /predict
-├── dashboard/
-│ └── streamlit-app.py # Streamlit frontend
-│
-├── data/
-│ └── cleaned_data.csv # Auto-generated after fetch
-│
-├── fake_api.py # Simulates /get_data endpoint
-├── fetch_data.py # Pulls fake data and saves it
-├── model_train.py # Trains and saves XGBoost model
-├── run_project.bat # One-click project runner
-├── model.pkl # Saved ML model
-│
-├── screenshot1.png # UI screenshot
-├── screenshot2.png # UI screenshot
-├── shap_summary.png # SHAP summary plot
-├── README.md
-└── .gitignore
+<pre> 📦 livelihood-risk 
+  ├── 📁 api
+  │ └── 📄 main.py # FastAPI prediction endpoint
+  ├── 📁 dashboard 
+  │ └── 📄 streamlit-app.py # Streamlit frontend for input and prediction 
+  ├── 📁 data 
+  │ ├── 📄 raw_data.csv # Raw data from fake API
+  │ └── 📄 fetched_data.csv # Cleaned data used for training 
+  ├── 📄 fake_api.py # Fake API to simulate household data 
+  ├── 📄 fetch_data.py # Script to fetch and save fake data
+  ├── 📄 clean_data.py # Script to clean and preprocess data
+  ├── 📄 model_train.py # Trains XGBoost model and saves model.pkl 
+  ├── 📄 run_project.bat # Batch script to run the full pipeline 
+  ├── 📄 requirements.txt # Python dependencies 
+  ├── 📄 Dockerfile # Docker setup  
+  ├── 📄 .gitignore # Git ignore rules 
+  ├── 📄 README.md # Project documentation
+  ├── 📄 model.pkl # Trained model (optional to track in Git) 
+  ├── 🖼️ screenshot1.png # Screenshot of Streamlit UI 
+  ├── 🖼️ screenshot2.png # Screenshot of prediction output 
+  └── 🖼️ shap_summary.png # SHAP interpretability plot </pre>
 
 
 
