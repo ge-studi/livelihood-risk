@@ -46,9 +46,7 @@ livelihood-risk/
 ├── README.md
 └── .gitignore
 
-yaml
-Copy
-Edit
+
 
 ---
 
@@ -63,37 +61,21 @@ python -m venv venv
 venv\Scripts\activate  # On Windows
 pip install -r requirements.txt
 2. Start Fake API (Terminal 1)
-bash
-Copy
-Edit
 venv\Scripts\activate
 python -m uvicorn fake_api:app --reload --port 8000
 3. Run Project Setup (Terminal 2)
-bash
-Copy
-Edit
 venv\Scripts\activate
 ./run_project.bat
 4. Start Prediction API (Terminal 3)
-bash
-Copy
-Edit
 venv\Scripts\activate
 python -m uvicorn api.main:app --reload --port 8500
 5. Run Streamlit Dashboard (Terminal 4)
-bash
-Copy
-Edit
 venv\Scripts\activate
 streamlit run dashboard/streamlit-app.py
 📡 API Endpoints
 GET /get_data → from fake_api.py
 
 POST /predict → returns vulnerability score
-
-json
-Copy
-Edit
 POST http://localhost:8500/predict
 {
   "income": 1000,
@@ -104,9 +86,6 @@ POST http://localhost:8500/predict
 }
 Response:
 
-json
-Copy
-Edit
 { "vulnerability_score": 1 }
 🛡️ Tech Stack
 Python
