@@ -89,19 +89,20 @@ Response:
 { "vulnerability_score": 1 }
 
 🛡️ Tech Stack
-Python
 
-FastAPI
-
-Streamlit
-
-XGBoost
-
-SHAP
-
-Pandas
-
-NumPy
+    Python
+    
+    FastAPI
+    
+    Streamlit
+    
+    XGBoost
+    
+    SHAP
+    
+    Pandas
+    
+    NumPy
 
 🤝 Contributing
 Pull requests are welcome! For major changes, please open an issue first.
