@@ -87,6 +87,7 @@ POST http://localhost:8500/predict
 Response:
 
 { "vulnerability_score": 1 }
+
 🛡️ Tech Stack
 Python
 
@@ -98,7 +99,9 @@ XGBoost
 
 SHAP
 
-Pandas, NumPy
+Pandas
+
+NumPy
 
 🤝 Contributing
 Pull requests are welcome! For major changes, please open an issue first.
