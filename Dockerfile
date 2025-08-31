@@ -10,11 +10,11 @@ COPY requirements.txt .
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the code
+# Copy all code
 COPY . .
 
-# Expose the port Render expects
+# Expose port Render expects
 EXPOSE 8000
 
-# Start FastAPI app
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Start FastAPI app inside api folder
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
