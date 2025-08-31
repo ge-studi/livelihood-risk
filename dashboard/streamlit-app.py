@@ -12,7 +12,7 @@ asset = st.slider("Asset Index", 0.0, 1.0)
 edu = st.selectbox("Education Level", [0, 1, 2, 3, 4])
 
 # API endpoint
-API_URL = "https://livelihood-risk.onrender.com/predict"
+API_URL = "https://livelihood-risk.onrender.com"
 
 # Predict button
 if st.button("Predict"):
