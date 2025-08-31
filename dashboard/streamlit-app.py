@@ -1,20 +1,41 @@
 import streamlit as st
 import requests
 
+# App title and description
 st.title("Livelihood Risk Predictor")
-
 st.markdown(
     "This tool predicts the **vulnerability of a household** based on simple inputs. "
-    "Just enter the information below and click Predict."
+    "Enter the details below and click Predict."
 )
 
-# User Inputs
-income = st.number_input("Monthly Household Income (in Rupees)", min_value=0.0, step=100.0, format="%.2f")
-shocks = st.slider("Number of Recent Economic/Health Shocks (0 = none, 5 = many)", 0, 5)
-health = st.slider("Access to Healthcare (0 = poor, 1 = excellent)", 0.0, 1.0)
-asset = st.slider("Household Asset Index (0 = low, 1 = high)", 0.0, 1.0)
-edu = st.selectbox("Education Level of Household Head (0 = None, 4 = College+)", [0, 1, 2, 3, 4])
+# Input fields with realistic ranges
+income = st.number_input(
+    "Monthly Household Income (in Rupees)", 
+    min_value=1000.0, max_value=4000.0, step=100.0, format="%.2f"
+)
 
+shocks = st.slider(
+    "Number of Recent Economic/Health Shocks (0 = none, 5 = many)", 
+    min_value=0, max_value=5
+)
+
+health = st.slider(
+    "Access to Healthcare (0 = poor, 1 = excellent)", 
+    min_value=0.0, max_value=0.92, step=0.01
+)
+
+asset = st.slider(
+    "Household Asset Index (0 = low, 1 = high)", 
+    min_value=0.01, max_value=0.92, step=0.01
+)
+
+edu = st.selectbox(
+    "Education Level of Household Head", 
+    options=[0, 1, 2, 3, 4], 
+    format_func=lambda x: ["None", "Primary", "Middle", "High School", "College+"][x]
+)
+
+# API URL
 API_URL = "https://livelihood-risk.onrender.com/predict"
 
 if st.button("Predict"):
@@ -34,23 +55,19 @@ if st.button("Predict"):
             # Plain language explanation
             if score >= 3:
                 risk_level = "High"
+                guidance = "This household may need immediate support."
             elif score == 2:
                 risk_level = "Medium"
+                guidance = "This household may require monitoring or targeted support."
             else:
                 risk_level = "Low"
+                guidance = "This household is relatively secure at the moment."
             
             st.success(f"Predicted Vulnerability: **{risk_level}** (Score: {score})")
-            
-            # Optional: Simple guidance
-            if risk_level == "High":
-                st.info("This household may need immediate support or intervention.")
-            elif risk_level == "Medium":
-                st.info("This household may require monitoring or targeted support.")
-            else:
-                st.info("This household is relatively secure at the moment.")
+            st.info(guidance)
 
         elif res.status_code == 404:
-            st.error("API endpoint not found. Check the URL.")
+            st.error("API endpoint not found. Check the FastAPI URL.")
         else:
             st.error(f"Error {res.status_code}: {res.text}")
 
