@@ -1,34 +1,40 @@
 import streamlit as st
 import requests
 
+# Title
 st.title("Livelihood Risk Predictor")
 
-income = st.number_input("Income")
+# Input fields
+income = st.number_input("Income", min_value=0.0, step=100.0, format="%.2f")
 shocks = st.slider("Shocks", 0, 5)
 health = st.slider("Health Access", 0.0, 1.0)
 asset = st.slider("Asset Index", 0.0, 1.0)
 edu = st.selectbox("Education Level", [0, 1, 2, 3, 4])
 
-# Run prediction only on button click
+# API endpoint
+API_URL = "https://livelihood-risk.onrender.com/predict"
+
+# Predict button
 if st.button("Predict"):
+    payload = {
+        "income": income,
+        "shocks": shocks,
+        "health_access": health,
+        "asset_index": asset,
+        "education_level": edu
+    }
+
     try:
-        res = requests.post(
-            "https://livelihood-risk.onrender.com/predict",
-            json={
-                "income": income,
-                "shocks": shocks,
-                "health_access": health,
-                "asset_index": asset,
-                "education_level": edu
-            },
-            timeout=20  # add timeout in case API is slow
-        )
+        res = requests.post(API_URL, json=payload, timeout=20)
 
         if res.status_code == 200:
             response = res.json()
-            st.success(f"Predicted Vulnerability Score: {response['vulnerability_score']}")
+            score = response.get("vulnerability_score")
+            st.success(f"Predicted Vulnerability Score: {score}")
+        elif res.status_code == 404:
+            st.error("API endpoint not found. Check your FastAPI deployment URL.")
         else:
-            st.error(f"Failed with status code: {res.status_code}")
+            st.error(f"Failed with status code: {res.status_code}\nResponse: {res.text}")
 
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         st.error(f"Error connecting to API: {e}")
