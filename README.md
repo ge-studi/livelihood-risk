@@ -12,7 +12,6 @@ This project is a **user-friendly tool** that predicts the **vulnerability of a 
 - [Live Demo](#live-demo)
 - [Screenshots](#screenshots)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Project Structure](#project-structure)
 - [Notes](#notes)
 
@@ -74,19 +73,19 @@ You can access the interactive demo here:
 
 ## Screenshots
 ### Dashboard and Predictions
-![Screenshot1](images/Screenshot1.pdf)  
-![Screenshot2](images/Screenshot2.pdf)  
-![Screenshot3](images/Screenshot3.pdf)  
+![Screenshot1](images/Screenshot1.png)  
+![Screenshot2](images/Screenshot2.png)  
+![Screenshot3](images/Screenshot3.png)  
 
 > The screenshots show how to input household data and view the predicted risk level with simple guidance.
 
 ---
 
 ## Installation
-
-1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/livelihood-risk-predictor.git
+Clone this repository:
+
+git clone https://github.com/ge-studi/livelihood-risk-predictor.git
 cd livelihood-risk-predictor
 
 Install required packages:
@@ -113,8 +112,12 @@ POST request to /predict with JSON body:
   "asset_index": 0.7,
   "education_level": 2
 }
+```
+---
 
-Project Structure
+## Project Structure
+```bash
+
 ├── api/
 │   └── main.py              # FastAPI endpoints
 ├── dashboard/
@@ -134,8 +137,11 @@ Project Structure
 ├── requirements.txt
 ├── Dockerfile
 └── run_project.bat
+```
 
-Notes
+---
+
+## Notes
 
 The thresholds are illustrative to demonstrate how socio-economic factors affect household vulnerability.
 
