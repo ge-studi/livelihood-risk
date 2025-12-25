@@ -1,110 +1,90 @@
 # Livelihood Risk Predictor
 
-This project is a **user-friendly tool** that predicts the **vulnerability of a household** based on simple socio-economic inputs. The goal is to provide **actionable insights** for non-technical users, helping organizations or individuals identify households that may need support.
+🔗 **Live Demo:** https://livelihood-risk-38mfu8hsjrmrkpmymcqxjt.streamlit.app/
 
 ---
 
-## Table of Contents
-- [Overview](#overview)
-- [How It Works](#how-it-works)
-- [Input Parameters](#input-parameters)
-- [Risk Levels & Examples](#risk-levels--examples)
-- [Live Demo](#live-demo)
-- [Screenshots](#screenshots)
-- [Installation](#installation)
-- [Project Structure](#project-structure)
-- [Notes](#notes)
+## 📌 Problem Statement
+NGOs, social organizations, and government agencies often struggle to quickly identify households that are **vulnerable to economic or health shocks**.  
+Manual assessment is time-consuming and requires technical expertise.
 
 ---
 
-## Overview
-The **Livelihood Risk Predictor** takes simple inputs about a household and calculates a **vulnerability score**. Based on the score, it classifies the household as **Low**, **Medium**, or **High** risk.  
-
-This tool is designed for **social organizations, NGOs, and government agencies** to quickly identify households at risk and take action.
-
----
-
-## How It Works
-1. Users enter household information such as **income, shocks, health access, asset index, and education**.  
-2. The tool calculates a **vulnerability score** by assigning 1 point for each of the following conditions:  
-   - Low income (< 2000 ₹)  
-   - High number of shocks (> 2)  
-   - Poor health access (< 0.5)  
-   - Low asset index (< 0.5)  
-   - Low education level (< 2)  
-3. Scores are then mapped to risk levels:
-   - **0-1 points:** Low Risk  
-   - **2-3 points:** Medium Risk  
-   - **4-5 points:** High Risk  
+## 💡 Solution
+The **Livelihood Risk Predictor** is an interactive, user-friendly tool that predicts household vulnerability based on simple socio-economic inputs.  
+It provides **actionable insights** for non-technical users, enabling organizations to **prioritize support** for high-risk households efficiently.
 
 ---
 
-## Input Parameters
-| Parameter                 | Description                                | Range / Options             |
-|----------------------------|--------------------------------------------|----------------------------|
-| Monthly Household Income   | Total monthly income in ₹                  | 0.0 and above             |
-| Shocks                     | Number of recent economic/health shocks   | 0 to 5                     |
-| Health Access              | Access to healthcare (0 = poor, 1 = excellent) | 0.0 to 1.0              |
-| Household Asset Index      | Overall household assets (0 = low, 1 = high) | 0.0 to 1.0              |
-| Education Level            | Education level of household head (0 = None, 4 = College+) | 0 to 4             |
+## 🚀 Key Features
+- Input household data via a simple Streamlit dashboard  
+- Calculates a **vulnerability score** using socio-economic indicators  
+- Classifies households into **Low, Medium, or High risk**  
+- Provides easy-to-understand output for quick decision-making  
+- Optional API integration for programmatic access  
 
 ---
 
-## Risk Levels & Examples
-The vulnerability **score** determines the risk:
+## 🛠 Tech Stack
+- **Frontend:** Streamlit  
+- **Backend:** Python  
+- **ML / Data Processing:** Pandas, NumPy, scikit-learn  
+- **Deployment:** Streamlit Cloud (or Render / Railway / Heroku)  
+- **Optional API:** FastAPI  
 
+---
+
+## 🧠 How It Works
+1. Users enter household information: income, shocks, health access, asset index, and education level.  
+2. The tool calculates a **vulnerability score**:  
+   - +1 for each risk factor (low income, high shocks, poor health access, low assets, low education)  
+3. Maps the score to **risk levels**:  
+   - 0–1 → Low Risk  
+   - 2–3 → Medium Risk  
+   - 4–5 → High Risk  
+
+---
+
+## 📊 Example Cases
 | Example | Income (₹) | Shocks | Health Access | Asset Index | Education | Score | Predicted Risk |
 |---------|------------|--------|---------------|-------------|-----------|-------|----------------|
 | High Risk | 1000 | 4 | 0.3 | 0.2 | 0 | 5 | High |
 | Medium Risk | 1800 | 3 | 0.8 | 0.9 | 3 | 2 | Medium |
 | Low Risk | 3500 | 0 | 1.0 | 1.0 | 4 | 0 | Low |
 
-**Explanation:**  
-- The score is calculated by **adding 1 for each condition** that applies (low income, high shocks, poor health, low asset, low education).  
-- The higher the score, the **higher the household’s vulnerability**.
-
 ---
 
-## Live Demo
-You can access the interactive demo here:  
-[**Livelihood Risk Predictor Live Demo**](https://livelihood-risk-38mfu8hsjrmrkpmymcqxjt.streamlit.app/)
-
----
-
-## Screenshots
-### Dashboard and Predictions
+## 🖥 Application Preview
 ![Screenshot1](images/Screenshot1.png)  
 ![Screenshot2](images/Screenshot2.png)  
 ![Screenshot3](images/Screenshot3.png)  
 
-> The screenshots show how to input household data and view the predicted risk level with simple guidance.
+> Screenshots show the user dashboard, input form, and risk prediction output.
 
 ---
 
-## Installation
-```bash
-Clone this repository:
+## ⚙️ Installation & Usage
 
+```bash
+# Clone repository
 git clone https://github.com/ge-studi/livelihood-risk-predictor.git
 cd livelihood-risk-predictor
+```
 
-Install required packages:
+# Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+# Run Streamlit dashboard
+```bash
 streamlit run dashboard/streamlit-app.py
-Enter household data in the fields.
+```
 
-Click Predict.
+---
 
-The tool will display the risk level and provide simple guidance.
-
-API (Optional)
-
-If you want to use the API:
-
-uvicorn api/main:app --reload
-
-
-POST request to /predict with JSON body:
-
+API Example: POST /predict with JSON:
+```bash
 {
   "income": 2000,
   "shocks": 2,
@@ -115,24 +95,22 @@ POST request to /predict with JSON body:
 ```
 ---
 
-## Project Structure
+📂 Project Structure
 ```bash
-
-├── api/
-│   └── main.py              # FastAPI endpoints
 ├── dashboard/
-│   └── streamlit-app.py     # Streamlit dashboard
+│   └── streamlit-app.py
+├── api/
+│   └── main.py
 ├── data/
 │   ├── fetched_data.csv
 │   └── raw_data.csv
 ├── images/
-│   ├── screenshot1.pdf
-│   ├── screenshot2.pdf
-│   └── screenshot3.pdf
+│   ├── Screenshot1.png
+│   ├── Screenshot2.png
+│   └── Screenshot3.png
 ├── model.pkl
 ├── model_train.py
 ├── clean_data.py
-├── fake-api.py
 ├── fetch_data.py
 ├── requirements.txt
 ├── Dockerfile
@@ -141,10 +119,32 @@ POST request to /predict with JSON body:
 
 ---
 
-## Notes
+🔮 Future Improvements
 
-The thresholds are illustrative to demonstrate how socio-economic factors affect household vulnerability.
+Add more ML models for higher predictive accuracy
 
-This project is ideal for NGOs, social researchers, and government agencies who want a quick assessment tool.
+Incorporate explainability (SHAP/LIME) for decision transparency
 
-All users can interact with it without coding knowledge.
+Enable multi-country / multi-region support
+
+Integrate real-time data collection for continuous risk assessment
+
+---
+
+🎯 Why This Project Matters
+
+Provides social impact through data-driven insights
+
+Demonstrates end-to-end ML application development
+
+Combines Python, ML, Streamlit, and API skills
+
+Ideal for portfolio showcase for social-tech or data roles
+
+---
+
+👤 Author
+
+Geetanjali Singh
+
+
