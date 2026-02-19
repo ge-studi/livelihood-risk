@@ -1,6 +1,6 @@
 # Livelihood Risk Predictor
 
-🔗 **Live Demo:** https://livelihood-risk-38mfu8hsjrmrkpmymcqxjt.streamlit.app/
+🔗 **Live Demo:** https://livelihood-risk-y4bfvsupqzi8lvu6guhcyg.streamlit.app/
 
 ---
 
